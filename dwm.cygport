@@ -1,0 +1,25 @@
+NAME="dwm"
+VERSION=6.0
+RELEASE=1
+CATEGORY="X11"
+SUMMARY="Dynamic window manager"
+DESCRIPTION="dwm is a dynamic window manager for X. It manages windows in
+tiled, monocle and floating layouts. All of the layouts can be applied
+dynamically, optimising the environment for the application in use and the
+task performed."
+HOMEPAGE="http://dwm.suckless.org/"
+SRC_URI="http://dl.suckless.org/dwm/dwm-${VERSION}.tar.gz"
+PATCH_URI="6.0-cflags.patch"
+
+REQUIRES="dmenu xterm"
+
+src_compile() {
+	lndirs
+	cd ${B}
+	cygmake CC=${CC} CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}"
+}
+
+src_install() {
+	cd ${B}
+	cyginstall PREFIX=/usr
+}
